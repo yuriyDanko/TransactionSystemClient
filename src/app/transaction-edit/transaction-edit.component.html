@@ -1,0 +1,66 @@
+<form [formGroup]="form" (ngSubmit)="save()" #formDir="ngForm" novalidate>
+ <div class="form-group row">
+    <label class=" control-label col-md-12">Transaction Id</label>
+    <div class="col-md-12">
+      <input class="form-control" type="text" formControlName="transactionId" readonly="">
+    </div>
+    <span class="text-danger ml-3" *ngIf="transactionId.invalid && formDir.submitted">
+      Transaction Id is required.
+    </span>
+  </div>
+  <div class="form-group row">
+    <label class=" control-label col-md-12">Client name</label>
+    <div class="col-md-12">
+      <input class="form-control" type="text" formControlName="clientName" readonly="">
+    </div>
+    <span class="text-danger ml-3" *ngIf="clientName.invalid && formDir.submitted">
+      Client name is required.
+    </span>
+  </div>
+   <div class="form-group row">
+    <label class=" control-label col-md-12">Client surname</label>
+    <div class="col-md-12">
+      <input class="form-control" type="text" formControlName="clientSurname" readonly="">
+    </div>
+    <span class="text-danger ml-3" *ngIf="clientSurname.invalid && formDir.submitted">
+      Client surname is required.
+    </span>
+  </div>
+   <div class="form-group row">
+    <label class=" control-label col-md-12">Current status of transaction</label>
+    <div class="col-md-12">
+      <input class="form-control" type="text" formControlName="statusName" readonly="">
+    </div>
+    <span class="text-danger ml-3" *ngIf="statusName.invalid && formDir.submitted">
+      Status name is required.
+    </span>
+  </div>
+   <div class="form-group row">
+    <label class=" control-label col-md-12">Type of transaction</label>
+    <div class="col-md-12">
+      <input class="form-control" type="text" formControlName="typeName" readonly="">
+    </div>
+    <span class="text-danger ml-3" *ngIf="typeName.invalid && formDir.submitted">
+      Type name is required.
+    </span>
+  </div>
+   <div class="form-group row">
+    <label class=" control-label col-md-12">Amount</label>
+    <div class="col-md-12">
+      <input class="form-control" type="text" formControlName="amount" readonly="">
+    </div>
+    <span class="text-danger ml-3" *ngIf="amount.invalid && formDir.submitted">
+      Amount is required.
+    </span>
+  </div>
+  <div class="form-group row">
+	  <select class="form-control" (change)="selectOption($event.target.value)" style="text-align: center;">
+	    <option class="form-control" value="">Select new status for transaction</option>
+	    <option class="form-control" *ngFor="let status of (statuses)" [value] = "status.id">{{status.name}}</option>
+	  </select>
+ </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-success float-right" (click) = "save()">Save</button>
+    <button class="btn btn-secondary float-left" (click)="cancel()">Cancel</button>
+  </div>
+</form>

@@ -1,0 +1,45 @@
+
+
+<h1 style="text-align: center;">Transactions</h1>
+
+<p *ngIf="!(transactions)"><em>Loading...</em></p>
+<div>
+  <a class="btn btn-primary float-right mb-3">Import csv file</a>
+</div>
+<div class="form-group">
+    <label for="file" class=" control-label col-md-12">Choose File</label>
+    <input class="form-control" type="file"
+           id="file"
+           (change)="importCsv($event.target.files)">
+</div>
+<div></div>
+<div>
+  <a class="btn btn-primary float-right mb-3" (click)="exportExcel()">Export Excel file</a>
+</div>
+
+<table class="table table-sm table-hover" *ngIf="(transactions)?.length>0">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Client Name</th>
+      <th>Client Surname</th>
+      <th>Status</th>
+      <th>Type</th>
+      <th>Amount</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let transaction of (transactions)">
+      <td>{{ transaction.transactionId }}</td>
+      <td>{{ transaction.clientName }}</td>
+      <td>{{ transaction.clientSurname }}</td>
+      <td>{{ transaction.statusName }}</td>
+      <td>{{ transaction.typeName}}</td>
+      <td>{{ transaction.amount }}</td>
+      <td><a [routerLink]="['/transaction/edit/', transaction.transactionId]" class="btn btn-primary btn-sm float-right">Update</a></td>
+       <td><a [routerLink]="" (click)="delete(transaction.transactionId)" class="btn btn-danger btn-sm float-right">Delete</a></td>
+    </tr>
+  </tbody>
+</table>
